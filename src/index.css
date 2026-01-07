@@ -9,6 +9,7 @@
 body {
   background: #0f172a;
   color: white;
+
 }
 /* =========================== NAV ===================== */
 
@@ -16,12 +17,12 @@ body {
 .navbar {
   position: fixed;
   top: 0;
-  width: 100%;
+  width:clamp(50em, 100%,100vw);
   background: #020617;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 60px;
+  padding: min(1em, 5%);
   z-index: 1000;
 }
 
@@ -90,16 +91,138 @@ body {
 
 
 /* ============================= HERO =================== */
-.hero {
+ .hero {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 0 60px;
   background: linear-gradient(135deg, #020617, #020617);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  padding: 100px 60px;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.imgContent {
+  width: 250px;
+  height: 400px;
+  position: relative;
+  transform-style:preserve-3d;
+  animation:imag 40s linear infinite;
+  z-index: 20;
+}
+.imgContent:hover{
+  animation-play-state:paused;
+}
+.hero-photo {
+  object-fit: cover;
+  transition:all .2s ease-in-out;
+}
+
+.hero-photo:hover{
+  transform:translateY(-10px)
+} 
+
+@keyframes imag {
+  0%{
+    transform: perspective(1000px) rotateY(0deg);
+  }
+    100%{
+    transform: perspective(1000px) rotateY(360deg);
+  }
+}
+
+.imgContent span{
+  position:absolute;
+  top:10%;
+  left:0%;
+  width: 60%;
+  height: 70%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transform: rotateY(calc(var(--s)* 35deg)) translateZ(350px);
+  -webkit-box-reflect: below 2px linear-gradient(transparent,transparent,rgba(0,0, 0, 0.256));
+
+}
+
+.imgContent span img{
+   position:absolute;
+   top:10%;
+   left:0%;
+   width:100%;
+   height:100%;
+   border-radius:15px 15px;
+   object-fit:cover;
+}
+
+.absolu{
+  width: 100%;
+  height: 100vh;
+  position:absolute;
+  backdrop-filter: blur(1px);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ronde{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  position: relative;
+  padding: 2rem;
+  
+}
+
+.ronde span.item{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #38bdf8;
+  margin-top: 4rem;
+  transition: all .09s ease-in-out ;
+  transform: scale(1);
+  transform: translateY(0vh);
+  opacity:.2;
+  animation:item 15s linear infinite;
+  animation-duration: calc(100s/var(--i));
+  box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
+}
+
+.ronde span.item:nth-child(even){
+  background: #e72525;
+  box-shadow: 0 0 0 10px #dc4f4f44, 0 0 50px #dc4f4f, 0 0 100px #f7e05d;
+
+}
+
+@keyframes item {
+  0%{
+      transform: translateY(100vh) scale(.09);
+  }
+  100%{
+    transform:translateY(0vh) scale(1.2);
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero-photo {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .hero-content {
   max-width: 600px;
+  z-index: 20;
+
 }
 
 .hero h1 {
@@ -166,17 +289,7 @@ body {
   background: #020617;
 }
 
-.section-title {
-  font-size: 2.2rem;
-  margin-bottom: 30px;
-  color: #38bdf8;
-}
 
-.about-text {
-  max-width: 800px;
-  line-height: 1.8;
-  color: #cbd5f5;
-}
 @media (max-width: 768px) {
   .section {
     padding: 80px 30px;
@@ -189,11 +302,174 @@ body {
 }
 
 
+
+.about-content{
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  position:relative;
+}
+
+.pointage{
+  width: 200px;
+  height: 4px;
+  position: absolute;
+  top:20%;
+  right:40%;
+  background: linear-gradient(45deg, #4fc3dc, #dc4f4f,#020617);
+  border-radius: 50%;
+  animation: slate 30s linear infinite;
+}
+@keyframes slate{
+  0%{
+    opacity: .2;
+    transform:translateX(0%)
+  }100%{
+    opacity:1;
+    transform:translateX(50%)
+  }
+}
+
+.about-content .card-content{
+  width: 100%;
+  height: 70vh;
+}
+
+.text{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem ;
+  padding-right: 5rem;
+  padding-left: 34rem;
+  border:1px double #2aa1f0;
+  border-radius: 15px;
+  background-color:#020617;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: #ffffff;
+  text-align: left;
+  padding-top: 1rem;
+  text-transform: capitalize;
+}
+
+.about-text {
+  width :450px;
+  line-height: 1.8;
+  color: #cbd5f5cb;
+  text-align:left;
+  position: relative;
+  font-size: 1.5rem;
+
+}
+
+.about-text-absolut{
+  width: 300px;
+  position:absolute;
+  top:27%;
+  left:10%;
+  font-size: 1.5rem;
+}
+
+ .p1{
+  font-size:14px;
+  font-weight: normal;
+  line-height: 1.4;
+  letter-spacing: .7px;
+  color:#6980a5;
+
+}
+
+
+.language{
+  width: 300px;
+  height: 100px;
+  position:absolute;
+  bottom: 5%;
+  right: 10%;
+  border-radius: 5px;
+  padding: 10px;
+  /* transform:skew(-6deg,-4deg) */
+}
+
+.lang{
+  font-size: 12px;
+  font-weight: normal;
+
+}
+
+.list-lang{
+  width:100%;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  gap:.5rem;
+}
+
+.list-lang strong{
+  width: fit-content;
+  color: #e6f6fae3;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight:normal;
+  font-style:italic;
+
+}
+
+.list-lang .volume{
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(12deg,#4fc2dcd8, #aa0505e1 ,#2aa1f0d8);
+  border-radius: 10px;
+}
+.percent{
+   width: fit-content;
+   font-style:italic;
+   font-size:12px;
+    color:#2aa1f0bd;
+}
+
+.volume.volume2{
+  background:#f7f78071;
+}
+
+
 /* ============================== SKILLS ====================*/
+.content-skill{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 .skills-grid {
+  width:100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
+  border: 1px solid #4fc2dcd8;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.skillAnimation{
+  animation: skill 10s linear infinite;
+}
+
+.skillAnimation:hover{
+   animation-play-state:paused;
+}
+
+@keyframes skill {
+  100%{
+    transform: translateY(10%);
+  }
+  0%{
+    transform: translateY(0%);
+  }
 }
 
 .skill-card {
@@ -211,6 +487,26 @@ body {
   border-color: #38bdf8;
 }
 
+.titre{
+  position:relative;
+  top:1rem;
+  text-align: center;
+  text-transform:capitalize;
+  margin-left: 35rem;
+}
+
+.title-skill{
+  font-size: 1.5rem;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  color:yellow; 
+  font-weight: normal;
+}
+
+.titreWB{
+  color:#38bdf8;
+}
+
 @media (max-width: 480px) {
   .skill-card {
     font-size: 0.9rem;
@@ -224,6 +520,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
+  padding-top: 2rem;
 }
 
 .project-card {
@@ -308,3 +605,109 @@ body {
 }
 
 
+
+/* ============================ LOGIN LOGOUT REGISTER ======= */
+.meta{
+  width: 600px;
+  height:100%;
+  border-top-right-radius: 0%;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 80%;
+  background: #4fc3dc;
+  position:absolute;
+  top:-20%;
+  left:0%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5rem;
+  text-align: left;
+  box-shadow:0 0 0 2px #171d1f77;
+}
+
+
+.meta span{
+  color:#020617;
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+
+.meta a{
+  color:#0f172a;
+  font-size: 18px;
+  font-weight: lighter;
+  margin-top: 12px;
+}
+
+.meta p{
+  font-size: 16px;
+  color:#1e293bd2;
+  padding-right: 3rem;
+}
+
+.form{
+  width: 400px;
+  position:absolute;
+  top:30%;
+  right:15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form h1{
+  font-weight: bold;
+}
+
+.form label{
+  width: 380px;
+  height: auto;
+  margin:12px 0px;
+}
+
+.form label input{
+  width: 100%;
+  padding: 5px 12px;
+  border: 1px solid #dddddda8;
+  border-radius:5px;
+}
+
+
+.form input[type='submit']{
+  width: 200px;
+  height: auto;
+  padding: 8px 12px;
+  border-radius:5px;
+  margin-top: 12px;
+  background: #4fc3dc;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 50px auto;
+}
+
+.auth-form input, .auth-form button {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.lienExterne{
+  width: fit-content;
+  text-align: center;
+}
+
+.lienExterne li{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap:1rem;
+  margin: 1rem auto;
+
+}
+.logIcon{
+  width: 20px;
+  height: 20px;
+}

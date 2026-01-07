@@ -1,39 +1,32 @@
-import {motion} from 'framer-motion'
-import photo from "../assets/photo.jpg"; // chemin vers ton image
-import photo1 from "../assets/photo1.jpg"; // chemin vers ton image
-import photo2 from "../assets/photo2.jpg"; // chemin vers ton image
-function Hero() {
+// import { signOut } from "firebase/auth";
+// import { auth } from "../firebase";
+
+// function Logout() {
+//   const handleLogout = async () => {
+//     await signOut(auth);
+//     alert("Déconnecté !");
+//   };
+
+//   return <button onClick={handleLogout}>Logout</button>;
+// }
+
+// export default Logout;
+
+import React from 'react'
+import { motion } from 'framer-motion';
+import { signOut } from 'firebase/auth';
+
+function Logout() {
+  
+     const handleLogout= async()=>{
+      // await signOut()
+      alert('user is checkoutting')
+     }
   return (
-    <>
-    <motion.section className="hero" id="home"
-    initial={{opacity:0,y:50}} animate={{opacity:1,y:0}} transition={{duration:0.8}}
-    >
+        <motion.section className="hero" id="home"
+    initial={{opacity:0,y:50}} animate={{opacity:1,y:0}} transition={{duration:0.8}}>
       
-      <div className="hero-content">
-
-        <h1>François Nkumwimba</h1>
-        <h2>Développeur Web Full Stack</h2>
-        <p>
-          Je conçois des applications web modernes, rapides et sécurisées
-          avec React, Node.js et Firebase.
-        </p>
-
-        <div className="hero-buttons">
-          <a href="#projects" className="btn primary">Voir mes projets</a>
-          <a href="#contact" className="btn secondary">Me contacter</a>
-        </div>
-      </div>
-
-      <div className="imgContent">
-        <span style={{'--s':1}}><img src={photo} alt="François Nkumwimba" className="hero-photo" /> </span>
-        <span style={{'--s':2}}><img src={photo1} alt="François Nkumwimba" className="hero-photo" /> </span>
-        <span style={{'--s':3}}><img src={photo2} alt="François Nkumwimba" className="hero-photo" /> </span>
-        <span style={{'--s':4}}><img src={photo} alt="François Nkumwimba" className="hero-photo" /> </span>
-        <span style={{'--s':5}}><img src={photo1} alt="François Nkumwimba" className="hero-photo" /> </span>
-        <span style={{'--s':6}}><img src={photo2} alt="François Nkumwimba" className="hero-photo" /> </span>
-        </div>
-
-         <div className="absolu">
+      <div className="absolu">
           <div className="ronde">
                 <span className='item' style={{'--i':12}}></span>
                 <span className='item' style={{'--i':11}}></span>
@@ -66,9 +59,7 @@ function Hero() {
             </div>
          </div>
     </motion.section>
-
-    </>
   )
 }
 
-export default Hero
+export default Logout

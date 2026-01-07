@@ -6,13 +6,13 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 export default function App() {
   return (
-    <>
-    <Navbar/>
-    <Hero/>
-    <About/>
-    <Skills/>
-    <Projects/>
-    <Contact/>
-    </>
+  <>
+          <Navbar/>
+          <Hero/>
+          <About/>
+          <Skills/>
+          <Projects/>
+          <Contact/>
+  </>
   )
 }
